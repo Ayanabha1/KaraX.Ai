@@ -1,4 +1,4 @@
-// import { features } from "@/lib/constants";
+"use client";
 import { cn } from "@/lib/utils";
 import {
   ArrowRight,
@@ -7,9 +7,11 @@ import {
   ClipboardList,
   FileText,
   Icon,
+  Tag,
   Video,
 } from "lucide-react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const features = [
   {
@@ -33,7 +35,7 @@ const features = [
     description:
       "Automatically generate a list of Key Topics discussed during the meeting.",
     cols: 1,
-    icon: ClipboardList,
+    icon: Tag,
     imageSrc: "/assets/landing/key-topics.svg",
   },
   {
@@ -63,28 +65,38 @@ const features = [
 
 export default function FeaturesPage() {
   return (
-    <div className="w-full">
+    <motion.main
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="w-full min-h-screen"
+      viewport={{ once: true }}
+    >
       <div className="space-y-16">
         {/* Header Section */}
         <div className="text-center space-y-4">
           {/* <div className="inline-block px-4 py-1 bg-gray-800 rounded-full text-sm">
             Features
           </div> */}
-          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-6xl">
-            Essential tools for your
+          <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            Elevate Your Meetings
             <br />
-            <span className="logo-text">financial growth</span>
+            <span className="logo-text">Drive Success</span>
           </h1>
           <p className="text-gray-500 max-w-2xl mx-auto">
-            Unlock your financial potential with SwiftFunds powerful suite of
-            tools designed to drive your financial success
+            Transform your meetings into actionable outcomes with tools that
+            summarize key points, streamline tasks, and enhance collaboration.
           </p>
         </div>
 
         {/* Features Grid */}
         <div className="w-full gap-4 grid grid-cols-1 sm:grid-cols-3">
           {features.map((feature) => (
-            <div
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+              viewport={{ once: true }}
               key={feature.title}
               className={cn(
                 "rounded-xl overflow-hidden cursor-pointer border",
@@ -119,10 +131,10 @@ export default function FeaturesPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </motion.main>
   );
 }

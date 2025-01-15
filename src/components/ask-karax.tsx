@@ -1,3 +1,5 @@
+"use client";
+
 import {
   CheckCircle,
   Briefcase,
@@ -9,16 +11,21 @@ import {
   LucideIcon,
   SendHorizontal,
 } from "lucide-react";
-import Image from "next/image";
-
+import { motion } from "framer-motion";
 export default function AskKaraX() {
   return (
-    <div className="min-h-screen dark:text-white flex flex-col md:flex-row items-center gap-12">
-      <div className="flex-1  flex gap-12 w-full">
+    <motion.main
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="min-h-screen dark:text-white flex flex-col md:flex-row items-center gap-12"
+      viewport={{ once: true }}
+    >
+      <div className="flex-1 flex gap-12 w-full">
         {/* Left Content */}
         <div className="w-[60%]">
-          <h1 className="text-5xl font-bold mb-6 dark:text-emerald-400 text-emerald-500">
-            Ask Acta Agent
+          <h1 className="text-5xl font-bold mb-6 logo-text pb-2">
+            Ask KaraX Agent
           </h1>
 
           <p className="dark:text-gray-300 text-black text-lg mb-12 leading-relaxed">
@@ -29,25 +36,25 @@ export default function AskKaraX() {
 
           <div className="space-y-8">
             <Feature
-              icon={<CheckCircle className="w-6 h-6 text-emerald-600" />}
+              icon={<CheckCircle className="w-6 h-6" />}
               title="Track Decisions"
               description="Ask Acta to summarize the key decisions made during the meeting."
             />
 
             <Feature
-              icon={<Briefcase className="w-6 h-6 text-emerald-600" />}
+              icon={<Briefcase className="w-6 h-6 " />}
               title="Monitor Deals"
               description="Ask Acta to check if any marketing deals were finalized during the call."
             />
 
             <Feature
-              icon={<Users className="w-6 h-6 text-emerald-600" />}
+              icon={<Users className="w-6 h-6 " />}
               title="Review Contributions"
               description="Ask Acta to provide insights on Mark's contributions during the meeting."
             />
 
             <Feature
-              icon={<ClipboardList className="w-6 h-6 text-emerald-600" />}
+              icon={<ClipboardList className="w-6 h-6" />}
               title="Evaluate Candidates"
               description="Ask Acta if the candidate can proceed to the technical interview stage."
             />
@@ -56,7 +63,7 @@ export default function AskKaraX() {
 
         {/* Right Content - Mobile App Preview */}
         <div className="flex-1 max-w-md w-[40%] relative">
-          <div className="z-[-1] absolute top-[60%] right-[50%] translate-x-[50%] w-[250px] h-[250px] bg-gradient-to-r from-transparent dark:via-green-300 via-green-700 to-transparent rounded-full  dark:blur-[200px] blur-[300px]"></div>
+          <div className="z-[-1] absolute top-[60%] right-[50%] translate-x-[50%] w-[250px] h-[250px] bg-gradient-to-r from-transparent dark:via-purple-200 via-purple-500 to-transparent rounded-full  dark:blur-[200px] blur-[300px]"></div>
 
           <div className="rounded-3xl  bg-muted p-4 shadow-2xl h-full flex flex-col justify-between">
             {/* Top portion */}
@@ -65,7 +72,7 @@ export default function AskKaraX() {
               <div className="flex items-center justify-between mb-6">
                 <Menu className="w-6 h-6 text-gray-400" />
                 <div className="text-lg font-semibold">Ask KaraX</div>
-                <div className="w-8 h-8 dark:bg-emerald-400 bg-emerald-500 rounded-full flex items-center justify-center">
+                <div className="w-8 h-8 bg-[rgb(104,80,182)] rounded-full flex items-center justify-center">
                   <span className="text-sm">A</span>
                 </div>
               </div>
@@ -104,7 +111,7 @@ export default function AskKaraX() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.main>
   );
 }
 
@@ -119,7 +126,7 @@ function Feature({
 }) {
   return (
     <div className="flex gap-4 items-strat">
-      <div className="text-emerald-400">{icon}</div>
+      <div className="text-[rgb(82,62,146)]">{icon}</div>
       <div>
         <h3 className="text-xl font-medium mb-2">{title}</h3>
         <p className="dark:text-gray-400 text-gray-500 leading-relaxed">
@@ -145,7 +152,7 @@ function ChatMessage({
     >
       <div className="flex items-center gap-3">
         <div className="rounded-full">
-          <Icon className="size-5 dark:text-emerald-400 text-emerald-600" />
+          <Icon className="size-5 text-[rgb(104,80,182)]" />
         </div>
         <p className="dark:text-gray-200 text-gray-800">{text}</p>
       </div>
