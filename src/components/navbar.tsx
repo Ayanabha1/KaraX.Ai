@@ -7,24 +7,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { ModeToggle } from "./mode-toggle";
 import MaxWidthWrapper from "./max-width-wrapper";
+import { useEffect, useState } from "react";
 
 interface NavBarProps {
-  scroll?: boolean;
   large?: boolean;
   className?: string;
 }
 
-export default function Navbar({
-  scroll = false,
-  className: string,
-}: NavBarProps) {
+export default function Navbar({ className: string }: NavBarProps) {
   const theme = useTheme();
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScroll(window.scrollY > 0);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav
       className={cn(
-        `sticky top-0 z-40 flex justify-center bg-background/60 backdrop-blur-xl transition-all w-full ${
-          scroll ? (scroll ? "border-b" : "bg-transparent") : "border-b"
+        `z-40 flex justify-center backdrop-blur-xl transition-all w-full ${
+          scroll ? "fixed top-0 border-b" : ""
         }`
       )}
     >
@@ -54,7 +59,7 @@ export default function Navbar({
                 <Link
                   href="/"
                   // className="bg-gradient-to-r from-[rgba(62,207,142)] to-[rgba(62,207,142,0.5)] bg-clip-text text-2xl font-bold text-transparent"
-                  className="text-3xl font-bold text-foreground"
+                  className="text-3xl font-bold text-foreground logo-text"
                 >
                   KaraX.Ai
                 </Link>

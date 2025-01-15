@@ -42,6 +42,7 @@ body {
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -82,7 +83,25 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.gradient-text {
+  background-image: linear-gradient(90deg, #7186ff 11%, #fe7587);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background-image: linear-gradient(90deg, #7186ff 11%, #fe7587);
+}
+
+.logo-text {
+  background: rgb(82, 62, 146);
+  background: linear-gradient(144deg, rgba(82, 62, 146, 1) 41%, rgba(155, 108, 172, 1) 90%);
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
